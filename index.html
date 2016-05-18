@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>츄리링메들리</title>
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<style>
+img#bg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+div#key {
+	position: relative;
+	font-size: 3000%;
+	text-align:center;	
+	color: blue;
+	z-index: 1;
+}
+div#title {
+	position: relative;
+	font-size: 1000%;
+	text-align:center;	
+	z-index: 1;
+}
+</style>
+<script>
+	var socket = io();
+
+	socket.on('key', function(msg){
+		$('#key').text(msg);
+		if (msg == "0") {
+			$('#key').html("<i class='fa fa-music'></i>");
+			$('#title').text("선곡하세요");
+		}
+		if (msg == "/") {
+			$('#key').html("<br/><i class='fa fa-camera-retro fa-lg'></i>");
+		}
+		if (msg == "*") {
+			$('#key').html("<br/><i class='fa fa-phone-square fa-lg'></i>");
+		}
+		if (msg == "-") {
+			$('#key').html("<br/><i class='fa fa-wechat fa-lg'></i>");
+		}
+		if (msg == "+") {
+			$('#key').html("<br/><i class='fa fa-youtube-square fa-lg'></i>");
+		}
+		if (msg == "<-") {
+			$('#key').html("<br/><i class='fa fa-gittip fa-lg'></i>");
+		}
+		if (msg == "Enter") {
+			$('#key').html("<br/><i class='fa fa-instagram fa-lg'></i>");
+		}
+		if (msg == ".") {
+			$('#key').html("<br/><i class='fa fa-hospital-o fa-lg'></i>");
+		}
+		if (msg == "NumLock") {
+			$('#key').html("<br/><i class='fa fa-cc-visa fa-lg'></i>");
+		}
+	});
+	socket.on('title', function(msg){
+		$('#title').text(msg);
+	});
+</script>
+</head>
+
+<body>
+<img src="bg.jpg" id="bg"/>
+<div id="key"><i class='fa fa-music'></i><br/></div>
+<div id="title">선곡하세요</div>
+
+</body>
+</html>
